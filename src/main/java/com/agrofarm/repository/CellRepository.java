@@ -26,9 +26,7 @@ public class CellRepository extends GenericRepository<Cell, Integer> {
         }
     }
 
-    /**
-     * Найти конкретную ячейку по ID со всей связанной полкой и датчиками.
-     */
+
     public Optional<Cell> findByIdWithDetails(int id) {
         try (EntityManager em = HibernateUtil.createEntityManager()) {
             List<Cell> result = em.createQuery(

@@ -6,12 +6,10 @@ import jakarta.persistence.EntityManager;
 import java.math.BigDecimal;
 import java.util.List;
 
-/**
- * Примеры бизнес-запросов на JPQL для Агрофермы.
- */
+
 public class BusinessQueryService {
 
-    // 1. Общая стоимость закупок по партиям
+
     public void totalCostByParty() {
         printHeader("Общая стоимость закупок по партиям");
         try (EntityManager em = HibernateUtil.createEntityManager()) {
@@ -34,7 +32,7 @@ public class BusinessQueryService {
         printDivider();
     }
 
-    // 2. Заполняемость полок ячейками
+
     public void shelfOccupancy() {
         printHeader("Заполняемость полок ячейками");
         try (EntityManager em = HibernateUtil.createEntityManager()) {
@@ -60,7 +58,7 @@ public class BusinessQueryService {
         printDivider();
     }
 
-    // 3. Топ датчиков по температуре (Критические показатели)
+
     public void criticalSensors() {
         printHeader("Топ датчиков по температуре");
         try (EntityManager em = HibernateUtil.createEntityManager()) {
@@ -81,11 +79,11 @@ public class BusinessQueryService {
         printDivider();
     }
 
-    // 4. Полки и количество привязанных к ним культур
+
     public void shelfCulturesCount() {
         printHeader("Полки и количество культур");
         try (EntityManager em = HibernateUtil.createEntityManager()) {
-            // SIZE() в JPQL считает количество элементов в коллекции @OneToMany
+
             List<Object[]> results = em.createQuery("""
                     SELECT s.level, s.cultureName, SIZE(s.cultures)
                     FROM Shelf s
@@ -101,7 +99,7 @@ public class BusinessQueryService {
         printDivider();
     }
 
-    // 5. Детализация датчиков с их ячейками и полками (Глубокий JOIN)
+
     public void sensorsWithDetails() {
         printHeader("Датчики с привязкой к ячейкам и уровням");
         try (EntityManager em = HibernateUtil.createEntityManager()) {
@@ -120,7 +118,7 @@ public class BusinessQueryService {
         printDivider();
     }
 
-    // 6. Поставщики семян по популярности (по количеству оформленных закупок)
+
     public void supplierPopularity() {
         printHeader("Рейтинг поставщиков по закупкам");
         try (EntityManager em = HibernateUtil.createEntityManager()) {
@@ -140,7 +138,7 @@ public class BusinessQueryService {
         printDivider();
     }
 
-    // 7. Средний показатель влажности датчиков по ячейкам
+
     public void avgHumidityByCell() {
         printHeader("Средняя влажность по ячейкам");
         try (EntityManager em = HibernateUtil.createEntityManager()) {
@@ -162,7 +160,7 @@ public class BusinessQueryService {
         printDivider();
     }
 
-    // 8. Культуры, которые ни разу не закупались (Подзапрос NOT IN)
+
     public void culturesWithoutPurchases() {
         printHeader("Культуры без оформленных закупок");
         try (EntityManager em = HibernateUtil.createEntityManager()) {
@@ -185,7 +183,7 @@ public class BusinessQueryService {
         printDivider();
     }
 
-    // 9. Свободные ячейки на определенной полке (Использование параметров :shelfId)
+
     public void freeCellsForShelf(int shelfId) {
         printHeader("Поиск ячеек для полки ID=" + shelfId);
         try (EntityManager em = HibernateUtil.createEntityManager()) {
@@ -208,7 +206,7 @@ public class BusinessQueryService {
         printDivider();
     }
 
-    // 10. Общая статистика по полкам: уровень, количество ячеек, количество датчиков внутри
+
     public void shelfStatistics() {
         printHeader("Общая статистика по ярусам агрофермы");
         try (EntityManager em = HibernateUtil.createEntityManager()) {

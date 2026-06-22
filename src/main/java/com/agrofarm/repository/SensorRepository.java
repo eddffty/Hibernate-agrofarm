@@ -53,7 +53,7 @@ public class SensorRepository extends GenericRepository<Sensor, Integer> {
             Sensor sensor = em.find(Sensor.class, sensorId);
 
             if (sensor != null && equipment != null) {
-                // Устанавливаем двунаправленную связь в памяти Java
+
                 equipment.setSensor(sensor);
                 sensor.getEquipments().add(equipment);
 
